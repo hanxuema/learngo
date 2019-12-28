@@ -198,8 +198,8 @@ func main() {
 	}
 
 	var f func(input string) (int, string)
-	
-	f = func (input string) (int, string) {
+
+	f = func(input string) (int, string) {
 		fmt.Println(input)
 		return 1, "asdfjlsadf"
 	}
@@ -241,3 +241,9 @@ func divide(a, b float64) (float64, error) {
 type myStruct struct {
 	foo int
 }
+
+type Writer interface{
+	Write([]byte)(int, error)
+}
+
+type ConsoleWriter struct{}

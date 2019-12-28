@@ -154,4 +154,22 @@ func main() {
 	aaa = 76
 	//get the value of pointer, which is the value of a, it output 76 42 76
 	fmt.Println(aaa,bbb,*bbbPointer) 
+
+	aa1 := [3]int{1,2,3}
+	bb1 := &aa1[0]
+	cc1 := &aa1[1]
+	fmt.Printf("%v %p %p\n",aa1,bb1,cc1) //print the value of a and the pointer of b and c
+	
+	var ms *myStruct
+	fmt.Println(ms)//<nil>
+	ms = new(myStruct)
+	fmt.Println(ms)//&{0}
+	ms.foo =78
+	fmt.Println(ms.foo)//78 
+	(*ms).foo = 42
+	fmt.Println((*ms).foo)//42 
+}
+
+type myStruct struct{
+	foo int
 }

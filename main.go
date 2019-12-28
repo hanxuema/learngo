@@ -55,4 +55,22 @@ func main() {
 
 	fmt.Println("s5 is ", s5)
 	fmt.Println("s6 is ", s6)
+
+	dic := make(map[string]int)
+	dic = map[string]int{
+		"a":1,
+		"b":2,
+	}
+	fmt.Println(dic)
+	dic["a"] = 5
+	fmt.Println(dic)
+	delete(dic, "a") //delete a
+	fmt.Println(dic["a"])
+	fmt.Println(dic) // a is zero even a is deleted
+
+	pop, ok := dic["a"] //fix the above issue
+	fmt.Println(pop,ok)
+
+	fmt.Println(len(dic))
+
 }

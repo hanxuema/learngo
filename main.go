@@ -196,6 +196,15 @@ func main() {
 			fmt.Println("Hello go", i)
 		}(index)
 	}
+
+	var f func(input string) (int, string)
+	
+	f = func (input string) (int, string) {
+		fmt.Println(input)
+		return 1, "asdfjlsadf"
+	}
+	output1, output2 := f("go go go")
+	println(output1, output2)
 }
 
 func sayGreeting(greeting, name string) {

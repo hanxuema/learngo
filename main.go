@@ -1,7 +1,10 @@
 package main
 
 import (
+	"net/http"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"reflect"
 )
 
@@ -105,5 +108,32 @@ func main() {
 	field, _ := t.FieldByName("name")
 	fmt.Println(field.Tag)
 
+	//below will run start and end and middle
+	fmt.Println("start")
+	//defer fmt.Println("middle") // defer get executed after main executes but before it is returnd
+	fmt.Println("end")
+
+	//defer to last in first out, stack
+	//below will be end, middle, start
+
+	// defer fmt.Println("start 1")
+	// defer fmt.Println("middle 2")
+	// defer fmt.Println("end 3")
+
+	res, err := http.Get("http://www.google.com/robots.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	robots, err := ioutil.ReadAll(res.Body)
+	if	err != nil{
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", robots)
+
+	//it will only print deferA, because deferA is used by defer function, deferA will only be delcared when the deferFunc get called
+	deferA := "deferA"
+	defer fmt.Println(deferA)
+	deferA = "deferBBBBBBBBBB"
 	
 }

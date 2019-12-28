@@ -191,6 +191,9 @@ func main() {
 	}
 	fmt.Println(div)
 
+	func ()  {
+		fmt.Println("Hello go")
+	}()
 }
 
 func sayGreeting(greeting, name string) {

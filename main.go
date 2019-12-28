@@ -132,8 +132,17 @@ func main() {
 	fmt.Printf("%s", robots)
 
 	//it will only print deferA, because deferA is used by defer function, deferA will only be delcared when the deferFunc get called
-	deferA := "deferA"
-	defer fmt.Println(deferA)
-	deferA = "deferBBBBBBBBBB"
+	// deferA := "deferA"
+	// defer fmt.Println(deferA)
+	// deferA = "deferBBBBBBBBBB"
 	
+	fmt.Println("start")
+	
+	defer func()  {
+		if err:= recover(); err != nil {
+			log.Println("error", err)
+		}
+	}()
+	panic("something bad happend")
+	fmt.Println("end")
 }

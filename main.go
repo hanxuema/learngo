@@ -49,4 +49,10 @@ func main() {
 	b2 := append(a3[:2], a3[3:]...)
 	fmt.Println("b2 is ",b2)
 	fmt.Println("a3 is ",a3)
+
+	s5 := make([]int, 10)//create slice with capacity and length = 10
+	s6 := make([]int, 10,100)//create slice with length = 10 and capacity = 100
+
+	fmt.Println("s5 is ", s5)
+	fmt.Println("s6 is ", s6)
 }

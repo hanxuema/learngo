@@ -191,9 +191,11 @@ func main() {
 	}
 	fmt.Println(div)
 
-	func ()  {
-		fmt.Println("Hello go")
-	}()
+	for index := 0; index < 5; index++ {
+		func(i int) {
+			fmt.Println("Hello go", i)
+		}(index)
+	}
 }
 
 func sayGreeting(greeting, name string) {

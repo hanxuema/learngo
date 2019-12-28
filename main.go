@@ -1,6 +1,6 @@
 package main
 
-import ( 
+import (
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -177,24 +177,37 @@ func main() {
 	sayGreetingPointer(&greeting, &name)
 	fmt.Println(name) //print ted
 
-	println("outside", 	sum(1,2,3,4,5))
+	println("outside", sum(1, 2, 3, 4, 5))
+
+	div, err := divide(1, 3)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(div)
+
+	div, err = divide(1, 0)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(div)
+
 }
 
 func sayGreeting(greeting, name string) {
 	fmt.Println(greeting, name) //hello stan
-	name = "Ted" // from stan to ted
-	fmt.Println(name) //print ted
+	name = "Ted"                // from stan to ted
+	fmt.Println(name)           //print ted
 }
 
-func sayGreetingPointer(greeting, name *string)  {
-	fmt.Println(greeting, name) //0xc00008cfe0 0xc00008cff0
+func sayGreetingPointer(greeting, name *string) {
+	fmt.Println(greeting, name)   //0xc00008cfe0 0xc00008cff0
 	fmt.Println(*greeting, *name) //hello stan
-	*name = "Ted" // from stan to ted
-	fmt.Println(name) //print 0xc00008cff0
+	*name = "Ted"                 // from stan to ted
+	fmt.Println(name)             //print 0xc00008cff0
 }
 
 //... must be the last one and the only one parameter
-func sum(values ...int)  int{
+func sum(values ...int) int {
 	fmt.Println(values)
 	result := 0
 	for _, v := range values {
@@ -202,6 +215,13 @@ func sum(values ...int)  int{
 	}
 	fmt.Println("sum is", result)
 	return result
+}
+
+func divide(a, b float64) (float64, error) {
+	if b == 0.0 {
+		return 0.0, fmt.Errorf("can not divide by zero")
+	}
+	return a / b, nil
 }
 
 type myStruct struct {

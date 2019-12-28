@@ -73,4 +73,7 @@ func main() {
 
 	fmt.Println(len(dic))
 
+
+	aDoctor := struct{name string}{name: "xavier"}
+	fmt.Println(aDoctor)
 }

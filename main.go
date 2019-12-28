@@ -1,10 +1,10 @@
 package main
 
-import (
-	"net/http"
+import ( 
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"reflect"
 )
 
@@ -125,8 +125,8 @@ func main() {
 		log.Fatal(err)
 	}
 	defer res.Body.Close()
-	robots , err := ioutil.ReadAll(res.Body)
-	if	err != nil{
+	robots, err := ioutil.ReadAll(res.Body)
+	if err != nil {
 		log.Fatal(err)
 	}
 	_ = robots
@@ -136,9 +136,9 @@ func main() {
 	// deferA := "deferA"
 	// defer fmt.Println(deferA)
 	// deferA = "deferBBBBBBBBBB"
-	
+
 	// fmt.Println("start")
-	
+
 	// defer func()  {
 	// 	if err:= recover(); err != nil {
 	// 		log.Println("error", err)
@@ -150,26 +150,60 @@ func main() {
 	aaa := 42
 	bbb := aaa
 	bbbPointer := &aaa // bbbPointer is ther pointer to aaa
-	fmt.Println(aaa,bbb, bbbPointer)
+	fmt.Println(aaa, bbb, bbbPointer)
 	aaa = 76
 	//get the value of pointer, which is the value of a, it output 76 42 76
-	fmt.Println(aaa,bbb,*bbbPointer) 
+	fmt.Println(aaa, bbb, *bbbPointer)
 
-	aa1 := [3]int{1,2,3}
+	aa1 := [3]int{1, 2, 3}
 	bb1 := &aa1[0]
 	cc1 := &aa1[1]
-	fmt.Printf("%v %p %p\n",aa1,bb1,cc1) //print the value of a and the pointer of b and c
-	
+	fmt.Printf("%v %p %p\n", aa1, bb1, cc1) //print the value of a and the pointer of b and c
+
 	var ms *myStruct
-	fmt.Println(ms)//<nil>
+	fmt.Println(ms) //<nil>
 	ms = new(myStruct)
-	fmt.Println(ms)//&{0}
-	ms.foo =78
-	fmt.Println(ms.foo)//78 
+	fmt.Println(ms) //&{0}
+	ms.foo = 78
+	fmt.Println(ms.foo) //78
 	(*ms).foo = 42
-	fmt.Println((*ms).foo)//42 
+	fmt.Println((*ms).foo) //42
+
+	greeting := "hello"
+	name := "Stan"
+	sayGreeting(greeting, name)
+	fmt.Println(name) //print stan
+
+	sayGreetingPointer(&greeting, &name)
+	fmt.Println(name) //print ted
+
+	println("outside", 	sum(1,2,3,4,5))
 }
 
-type myStruct struct{
+func sayGreeting(greeting, name string) {
+	fmt.Println(greeting, name) //hello stan
+	name = "Ted" // from stan to ted
+	fmt.Println(name) //print ted
+}
+
+func sayGreetingPointer(greeting, name *string)  {
+	fmt.Println(greeting, name) //0xc00008cfe0 0xc00008cff0
+	fmt.Println(*greeting, *name) //hello stan
+	*name = "Ted" // from stan to ted
+	fmt.Println(name) //print 0xc00008cff0
+}
+
+//... must be the last one and the only one parameter
+func sum(values ...int)  int{
+	fmt.Println(values)
+	result := 0
+	for _, v := range values {
+		result += v
+	}
+	fmt.Println("sum is", result)
+	return result
+}
+
+type myStruct struct {
 	foo int
 }

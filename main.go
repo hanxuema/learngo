@@ -125,24 +125,33 @@ func main() {
 		log.Fatal(err)
 	}
 	defer res.Body.Close()
-	robots, err := ioutil.ReadAll(res.Body)
+	robots , err := ioutil.ReadAll(res.Body)
 	if	err != nil{
 		log.Fatal(err)
 	}
-	fmt.Printf("%s", robots)
+	_ = robots
+	// fmt.Printf("%s", robots)
 
 	//it will only print deferA, because deferA is used by defer function, deferA will only be delcared when the deferFunc get called
 	// deferA := "deferA"
 	// defer fmt.Println(deferA)
 	// deferA = "deferBBBBBBBBBB"
 	
-	fmt.Println("start")
+	// fmt.Println("start")
 	
-	defer func()  {
-		if err:= recover(); err != nil {
-			log.Println("error", err)
-		}
-	}()
-	panic("something bad happend")
-	fmt.Println("end")
+	// defer func()  {
+	// 	if err:= recover(); err != nil {
+	// 		log.Println("error", err)
+	// 	}
+	// }()
+	// panic("something bad happend")
+	// fmt.Println("end")
+
+	aaa := 42
+	bbb := aaa
+	bbbPointer := &aaa // bbbPointer is ther pointer to aaa
+	fmt.Println(aaa,bbb, bbbPointer)
+	aaa = 76
+	//get the value of pointer, which is the value of a, it output 76 42 76
+	fmt.Println(aaa,bbb,*bbbPointer) 
 }

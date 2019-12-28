@@ -75,5 +75,21 @@ func main() {
 
 
 	aDoctor := struct{name string}{name: "xavier"}
-	fmt.Println(aDoctor)
+	anotherDoctor := aDoctor
+	anotherDoctor.name = "Tom"
+	fmt.Println("aDoctor is",aDoctor) 
+	fmt.Println("anotherDoctor is ", anotherDoctor)
+	aDoctor.name ="abb"
+	fmt.Println("aDoctor is",aDoctor) //because struct type is value type, therefore anotherdoctor 's name is not affacted by adoctor
+	fmt.Println("anotherDoctor is ", anotherDoctor)
+
+	//use pointer
+	secondDoctor := &aDoctor
+	fmt.Println("aDoctor is",aDoctor) 
+	fmt.Println("second doctor is", secondDoctor) 
+	aDoctor.name = "jlsadfjlasdf"
+
+	fmt.Println("aDoctor is",aDoctor) 
+	fmt.Println("second doctor is", secondDoctor) 
+	fmt.Println("anotherDoctor is ", anotherDoctor)
 }
